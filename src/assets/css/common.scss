@@ -1,0 +1,95 @@
+
+/**
+* 布局
+*/
+body,html{
+  overflow: hidden;
+}
+.block {
+  display: block;
+}
+.flex {
+  display: flex;
+}
+
+/**
+* 垂直排版
+*/
+.flex-column {
+  @extend .flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/**
+* 占剩余全部
+*/
+.flex-1 {
+  flex: 1;
+}
+.flex-align {
+  align-items: center;
+}
+
+
+@each $justify in flex-start, flex-end, center, space-between, space-around {
+  .#{$justify} {
+    justify-content: #{$justify};
+  }
+}
+
+$i: 30;
+@while $i>0 {
+  @each $dir in padding, margin, margin-bottom, margin-right {
+    .#{$dir}-#{$i} {
+      #{$dir}: $i * 1px;
+    }
+  }
+  $i: $i - 5;
+}
+
+/**
+* 字体
+*/
+@for $j from 14 to 31 {
+  .fz-#{$j} {
+    font-size: #{$j}px;
+  }
+}
+
+/**
+* 拆分窗格
+*/
+.n-layout-sider .n-layout-toggle-bar{
+  right:0
+}
+
+/**
+* 拆分窗格
+*/
+.splitpanes__pane{
+  box-shadow: none !important;
+}
+.splitpanes__splitter{
+  height: 7px;
+  border-bottom: 1px solid #e7e7e7;
+  border-top: 1px solid #e7e7e7;
+  position: relative;
+}
+.splitpanes__splitter:before,.splitpanes__splitter::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: rgba(0,0,0,.15);
+  -webkit-transition: background-color .3s;
+  transition: background-color .3s;
+  width: 30px;
+  height: 1px;
+}
+.splitpanes__splitter:before{
+  margin-top: -1px;
+}
+.splitpanes__splitter:after{
+  margin-top: 1px;
+}
